@@ -113,6 +113,7 @@
     <Font Include="res\Ruda-ExtraBold.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\user\cheat\debugger.cpp" />
     <ClCompile Include="src\user\cheat\misc\About.cpp" />
     <ClCompile Include="src\user\cheat\misc\sniffer\pipe\messages\PipeMessage.cpp" />
     <ClCompile Include="src\user\cheat\misc\sniffer\pipe\messages\PipeModifyData.cpp" />
@@ -128,11 +129,6 @@
     <ClCompile Include="src\user\cheat\world\AutoSeelie.cpp" />
     <ClCompile Include="src\user\cheat\world\CustomWeather.cpp" />
     <ClCompile Include="src\user\cheat\world\FakeTime.cpp" />
-    <ClCompile Include="src\user\cheat\debugger.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release_WS|x64'">false</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="src\user\cheat\teleport\CustomTeleports.cpp" />
     <ClCompile Include="src\user\cheat\GenshinCM.cpp" />
     <ClCompile Include="src\user\cheat\visuals\Browser.cpp" />
