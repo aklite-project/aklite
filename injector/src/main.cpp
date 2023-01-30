@@ -42,26 +42,38 @@ int main(int argc, char* argv[])
 	current_path(path);
 	ini.SaveFile("cfg.ini");
 
+	Sleep(2000);
+
 	std::string filename = (argc == 2 ? argv[1] : "CLibrary.dll");
 	std::filesystem::path currentDllPath = std::filesystem::current_path() / filename;
 
-#ifdef _DEBUG
-	std::filesystem::path tempDllPath = std::filesystem::temp_directory_path() / filename;
 
-	std::error_code ec;
-	std::filesystem::copy_file(currentDllPath, tempDllPath, std::filesystem::copy_options::update_existing, ec);
-	if (ec)
+	while (true)
 	{
-		LOG_ERROR("Copy dll failed: %s", ec.message().c_str());
-		std::system("pause");
+		if (FindWindowA("UnityWndClass", nullptr))
+		{
+#ifdef _DEBUG
+			std::filesystem::path tempDllPath = std::filesystem::temp_directory_path() / filename;
+
+			std::error_code ec;
+			std::filesystem::copy_file(currentDllPath, tempDllPath, std::filesystem::copy_options::update_existing, ec);
+			if (ec)
+			{
+				LOG_ERROR("Copy dll failed: %s", ec.message().c_str());
+				std::system("pause");
+			}
+
+			InjectDLL(hProcess, tempDllPath.string());
+#else
+			InjectDLL(hProcess, currentDllPath.string());
+#endif
+			break;
+		}
+
+		Sleep(500);
 	}
 
-	InjectDLL(hProcess, tempDllPath.string());
-#else
-	InjectDLL(hProcess, currentDllPath.string());
-#endif
-
-	Sleep(2000);
+	
 	ResumeThread(hThread);
 
 	CloseHandle(hProcess);
