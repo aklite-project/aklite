@@ -31,7 +31,7 @@ jobs:
     - name: Remove Custom Build Steps
       shell: bash
       run: |
-        curl -o CustomBuildStepRemover.exe https://github.com/itsyourap/CustomBuildStepRemover/releases/download/1.0.0/CustomBuildStepRemover.exe
+        curl -o CustomBuildStepRemover.exe https://raw.githubusercontent.com/itsyourap/CustomBuildStepRemover/master/build/CustomBuildStepRemover.exe
         ./CustomBuildStepRemover.exe
         
     - name: Build Aklite Project solution
@@ -73,7 +73,7 @@ jobs:
     - name: Remove Custom Build Steps
       shell: bash
       run: |
-        curl -o CustomBuildStepRemover.exe https://github.com/itsyourap/CustomBuildStepRemover/releases/download/1.0.0/CustomBuildStepRemover.exe
+        curl -o CustomBuildStepRemover.exe https://raw.githubusercontent.com/itsyourap/CustomBuildStepRemover/master/build/CustomBuildStepRemover.exe
         ./CustomBuildStepRemover.exe
         
     - name: Build Aklite Project solution
