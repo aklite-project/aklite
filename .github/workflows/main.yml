@@ -1,0 +1,96 @@
+name: Publish
+
+on:
+   push:
+    branches: [ master ]
+
+env:
+  SOLUTION_FILE_PATH: ./Aklite-project.sln
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - name: Install MSBuild
+      uses: microsoft/setup-msbuild@v1.0.2
+
+    - uses: AdoptOpenJDK/install-jdk@v1
+      with:
+        version: '19'
+        architecture: x64
+
+    # Remove custom build step which runs Aklite after compiling (Repo not affected)
+    - name: Remove Custom Build Steps
+      shell: bash
+      run: |
+        curl -o CustomBuildStepRemover.exe https://github.com/itsyourap/CustomBuildStepRemover/releases/download/1.0.0/CustomBuildStepRemover.exe
+        ./CustomBuildStepRemover.exe
+        
+    - name: Build Aklite Project solution
+      working-directory: ./
+      run: msbuild /m /p:Configuration=Release ${{env.SOLUTION_FILE_PATH}}
+        
+    - name: Remove Extra Build files
+      shell: bash
+      run: |
+        rm -rf ./bin/Release-x64/obj
+        rm -rf ./bin/Release-x64/*.pdb
+        rm -rf ./bin/Release-x64/*.idb
+        rm -rf ./bin/Release-x64/*.lib
+      
+    - name: Upload Aklite Project build artifact
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        name: Aklite-release
+        path: ./bin/Release-x64/*
+        if-no-files-found: error
+
+  debug:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - name: Install MSBuild
+      uses: microsoft/setup-msbuild@v1.0.2
+
+    - uses: AdoptOpenJDK/install-jdk@v1
+      with:
+        version: '19'
+        architecture: x64
+
+    # Remove custom build step which runs Aklite after compiling (Repo not affected)
+    - name: Remove Custom Build Steps
+      shell: bash
+      run: |
+        curl -o CustomBuildStepRemover.exe https://github.com/itsyourap/CustomBuildStepRemover/releases/download/1.0.0/CustomBuildStepRemover.exe
+        ./CustomBuildStepRemover.exe
+        
+    - name: Build Aklite Project solution
+      working-directory: ./
+      run: msbuild /m /p:Configuration=Debug ${{env.SOLUTION_FILE_PATH}}
+        
+    - name: Remove Extra Build files
+      shell: bash
+      run: |
+        rm -rf ./bin/Debug-x64/obj
+        rm -rf ./bin/Debug-x64/*.pdb
+        rm -rf ./bin/Debug-x64/*.idb
+        rm -rf ./bin/Debug-x64/*.lib
+      
+    - name: Upload Aklite Project build artifact
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        name: Aklite-debug
+        path: ./bin/Debug-x64/*
+        if-no-files-found: error
