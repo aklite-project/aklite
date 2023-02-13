@@ -20,12 +20,12 @@ jobs:
         submodules: recursive
 
     - name: Install MSBuild
-      uses: microsoft/setup-msbuild@v1.0.2
+      uses: microsoft/setup-msbuild@v1.1
 
-    - uses: AdoptOpenJDK/install-jdk@v1
+    - uses: actions/setup-java@v3
       with:
-        version: '19'
-        architecture: x64
+        distribution: 'temurin'
+        java-version: '19'
 
     # Remove custom build step which runs Aklite after compiling (Repo not affected)
     - name: Remove Custom Build Steps
@@ -62,12 +62,12 @@ jobs:
         submodules: recursive
 
     - name: Install MSBuild
-      uses: microsoft/setup-msbuild@v1.0.2
+      uses: microsoft/setup-msbuild@v1.1
 
-    - uses: AdoptOpenJDK/install-jdk@v1
+    - uses: actions/setup-java@v3
       with:
-        version: '19'
-        architecture: x64
+        distribution: 'temurin'
+        java-version: '19'
 
     # Remove custom build step which runs Aklite after compiling (Repo not affected)
     - name: Remove Custom Build Steps
