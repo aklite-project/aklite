@@ -1,3 +1,4 @@
+<h align="center">PROJECT IS DEAD, FORGET ABOUT IT. WE ARE WORKING ON ANOTHER SOFTWARE FOR GENSHIN THAT WILL BE REALISED SOON.
 <p align="center">
 <a href="https://ibb.co/NZkQWG0"><img src="https://i.ibb.co/18phR4C/AKLite.png" alt="AKLite" border="0"></a>
   <br>
