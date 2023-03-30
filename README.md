@@ -1,7 +1,7 @@
 <h align="center">PROJECT IS DEAD, FORGET ABOUT IT. WE ARE WORKING ON ANOTHER SOFTWARE FOR GENSHIN THAT WILL BE REALISED SOON. MORE INFO IN OUR DISCORD. https://discord.gg/M48bmvjBkf
 
 
-Also try Minty: https://discord.gg/D2vhbQwG
+Also try Minty: https://discord.gg/7g4hd6Vk
 <p align="center">
 <a href="https://ibb.co/NZkQWG0"><img src="https://i.ibb.co/18phR4C/AKLite.png" alt="AKLite" border="0"></a>
   <br>
